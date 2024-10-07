@@ -14,7 +14,10 @@ data class LegendDto(
     var title: String? = null,
 
     @SerializedName("PR_bench_press")
-     var prBenchPress: String? = null
+     var prBenchPress: String? = null,
+
+    @SerializedName("description")
+    var description: String? = null
 
 
 

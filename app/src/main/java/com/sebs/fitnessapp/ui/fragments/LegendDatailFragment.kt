@@ -73,7 +73,7 @@ class LegendDatailFragment : Fragment() {
                         .into(ivImage)
 
 
-                        tvLongDesc.text = response.body()?.alias
+                        tvLongDesc.text = response.body()?.description
 
                         //tvLongDesc.text = response.body()?.longDesc
                 }

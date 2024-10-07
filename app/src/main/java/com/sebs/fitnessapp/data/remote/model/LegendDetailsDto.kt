@@ -41,7 +41,13 @@ data class LegendDetailsDto(
     var weight: String? = null,
 
     @SerializedName("current_age")
-    var currentAge: String? = null
+    var currentAge: String? = null,
+
+    @SerializedName("description")
+    var description: String? = null
+
+
+
 
 
 
