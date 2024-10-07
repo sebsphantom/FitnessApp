@@ -1,59 +1,107 @@
 package com.sebs.fitnessapp.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.sebs.fitnessapp.R
+import com.sebs.fitnessapp.application.LegendRFApp
+import com.sebs.fitnessapp.data.LegendRepository
+import com.sebs.fitnessapp.data.remote.model.LegendDetailsDto
+import com.sebs.fitnessapp.databinding.FragmentLegendDatailBinding
+import com.sebs.fitnessapp.databinding.FragmentLegendListBinding
+import com.sebs.fitnessapp.utilis.Constants
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [LegendDatailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+private const val LEGEND_ID = "legend_id"
+
+
 class LegendDatailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private var legendId: String? = null
+
+    private var _binding: FragmentLegendDatailBinding? = null
+    private val  binding get() = _binding!!
+
+    private lateinit var repository: LegendRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        arguments?.let { args ->
+            legendId = args.getString(LEGEND_ID)
+
+            Log.d(Constants.LOGTAG, "ID recibido $legendId")
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_legend_datail, container, false)
+      _binding = FragmentLegendDatailBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        //instancia del repo
+        repository = (requireActivity().application as LegendRFApp).repository
+        legendId?.let { id ->
+        val call: Call<LegendDetailsDto> = repository.getLegendDatailApiary(id)
+            call.enqueue(object: Callback<LegendDetailsDto>{
+                override fun onResponse(p0: Call<LegendDetailsDto>, response: Response<LegendDetailsDto>) {
+
+                //EXITOSA
+
+                    binding.apply {
+                        pbLoading.visibility = View.GONE
+                        tvName.text = response.body()?.name
+
+
+                    Glide.with(requireActivity())
+                        .load(response.body()?.image)
+                        .into(ivImage)
+
+
+                        tvLongDesc.text = response.body()?.alias
+
+                        //tvLongDesc.text = response.body()?.longDesc
+                }
+
+            }
+
+                override fun onFailure(p0: Call<LegendDetailsDto>, p1: Throwable) {
+
+                }
+            })
+        }
+    }
+
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LegendDatailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(legendId: String,) =
             LegendDatailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(LEGEND_ID, legendId)
+
                 }
             }
     }

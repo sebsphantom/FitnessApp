@@ -11,7 +11,12 @@ data class LegendDto(
     var thumnail: String? = null,
 
     @SerializedName("title")
-    var title: String? = null
+    var title: String? = null,
+
+    @SerializedName("PR_bench_press")
+     var prBenchPress: String? = null
+
+
 
 )
 

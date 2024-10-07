@@ -39,4 +39,7 @@ interface LegendAPI {
     fun getLegendDetailApiary(
         @Path("id") id: String?
     ): Call<LegendDetailsDto>
+
+
+
 }

@@ -62,6 +62,14 @@ class LegendListFragment : Fragment() {
                         adapter = LegendAdapter(legend){ legend ->
                             //accion para detalles del juego
 
+                            legend.id?.let { id ->
+                                requireActivity().supportFragmentManager.beginTransaction()
+                                    .replace(R.id.fragment_container, LegendDatailFragment.newInstance(id))
+                                    .addToBackStack(null)
+                                    .commit()
+                            }
+
+
                         }
                     }
                 }

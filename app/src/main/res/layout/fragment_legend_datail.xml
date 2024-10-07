@@ -36,7 +36,7 @@
 
 
                     <TextView
-                        android:id="@+id/tvTitle"
+                        android:id="@+id/tvName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ubuntu_bold"
@@ -44,7 +44,7 @@
                         android:paddingBottom="10dp"
                         android:textColor="@color/white"
                         android:textSize="25sp"
-                        tools:text="Title" />
+                        tools:text="Legend Name" />
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/ivImage"
@@ -75,6 +75,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_centerInParent="true"
+                android:indeterminateDrawable="@drawable/loading_anim"
+                android:indeterminateDuration="1500"
                 />
 
         </RelativeLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:foreground="@drawable/custom_ripple"
     android:padding="4dp">
 
 
@@ -56,16 +57,16 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/ubuntu"
         android:includeFontPadding="false"
-        android:text="Nintendo"
-        android:textColor="#3FE0DD"
-        android:textSize="12sp"
+        android:text="BENCH PRESS PR"
+        android:textColor="#A80404"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@id/guideline6" />
 
     <TextView
-        android:id="@+id/tvReleased"
+        android:id="@+id/tvPRBenchPress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -73,16 +74,17 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/ubuntu"
         android:includeFontPadding="false"
-        android:text="Released: 2020"
-        android:textColor="#4A5B82"
-        android:textSize="12sp"
+
+        android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintBottom_toBottomOf="@id/guideline4"
-        app:layout_constraintTop_toTopOf="@id/guideline5" />
+        app:layout_constraintTop_toTopOf="@id/guideline5"
+        tools:text="PR_bench_press" />
 
     <TextView
-        android:id="@+id/tvRating"
+        android:id="@+id/tvoccupation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -90,13 +92,14 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/ubuntu"
         android:includeFontPadding="false"
-        android:text="ESRB Rating: E-Everyone"
+
         android:textColor="#F5DC53"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@id/guideline4"
-        app:layout_constraintBottom_toBottomOf="@id/guideline3"/>
+        app:layout_constraintBottom_toBottomOf="@id/guideline3"
+        tools:text="occupation"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
