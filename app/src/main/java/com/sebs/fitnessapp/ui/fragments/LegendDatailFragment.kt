@@ -75,8 +75,13 @@ class LegendDatailFragment : Fragment() {
 
                         tvLongDesc.text = response.body()?.description
 
+
+
                         //tvLongDesc.text = response.body()?.longDesc
                 }
+
+
+
 
             }
 

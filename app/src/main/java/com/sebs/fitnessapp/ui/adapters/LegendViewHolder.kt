@@ -17,6 +17,7 @@ class LegendViewHolder(
 
         binding.tvTitle.text = legend.title
         binding.tvPRBenchPress.text = legend.prBenchPress
+        binding.tvoccupation.text = legend.occupation
 
 
 
